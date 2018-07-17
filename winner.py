@@ -40,9 +40,9 @@ def who_wins(matrix):
     if not winner:
         print("It's a draw!")
     else:
-        print(winner)
+        print("The winner is player {}!".format(winner))
 
 
 who_wins([[2, 0, 1],
-          [2, 1, 2],
-          [1, 1, 1]])
+          [0, 0, 0],
+          [1, 0, 1]])
