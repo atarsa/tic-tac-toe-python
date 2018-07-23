@@ -14,6 +14,4 @@ def draw_row(rows):
     draw_roof(rows)
 
 
-size = input("What size game board do you want to draw? ")
-
-draw_row(int(size))
+# size = input("What size game board do you want to draw? ")

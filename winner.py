@@ -39,10 +39,13 @@ def who_wins(matrix):
         winner = check_diagonal(matrix)
     if not winner:
         print("It's a draw!")
+    elif winner == " ":
+        print("    ")
     else:
-        print("The winner is player {}!".format(winner))
+        # print("The winner is player {}!".format(winner))
+        return winner
 
 
-who_wins([[2, 0, 1],
-          [0, 0, 0],
-          [1, 0, 1]])
+# who_wins([[2, 0, 1],
+#           [0, 0, 0],
+#           [1, 0, 1]])

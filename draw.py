@@ -1,29 +1,54 @@
-game = [[0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0], ]
-
-player1 = "X"
-player2 = "O"
+from os import system, name
 
 
-def take_input_from_player(player):
-    player_input = input(
-        "{} : where do you want to move [row,column]? ".format(player))
-    draw = player_input.split(",")
+# Clear the screen
 
-    row, col = draw
-    row = int(row) - 1
-    col = int(col) - 1
 
-    if game[row][col] == 0:
-        game[row][col] = player
+def clear():
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+    # for mac and linux(here, os.name is 'posix')
     else:
-        print("Taken alredy, choose again.")
-        take_input_from_player(player)
-    print(game)
+        _ = system('clear')
 
 
-while True:
+def draw_board(game):
+    roof = (" " + "-"*3)*3
+    for row in game:
+        print(roof)
 
-    take_input_from_player(player1)
-    take_input_from_player(player2)
+        print("| " + str(row[0]) + " | " +
+              str(row[1]) + " | " + str(row[2]) + " |")
+    print(roof)
+
+
+def take_input_from_player(player, game):
+    try:
+        player_input = input(
+            "Player {} : where do you want to move [row,column]? ".format(player))
+        draw = player_input.split(",")
+        row, col = draw
+        row = int(row) - 1
+        col = int(col) - 1
+
+        if game[row][col] == " ":
+            game[row][col] = player
+
+        else:
+            print("Taken alredy, choose again.")
+            take_input_from_player(player, game)
+
+        clear()
+        draw_board(game)
+
+    except ValueError:
+        print(
+            "Invalid input (must be integer in [row, column] format). Try again.")
+        take_input_from_player(player, game)
+
+
+def check_if_finished(board):
+    for sublist in board:
+        if " " in sublist:
+            return True
